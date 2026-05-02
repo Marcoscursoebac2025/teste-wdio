@@ -13,3 +13,5 @@
     "test": "wdio run ./wdio.conf.js"
   }
 }
+
+

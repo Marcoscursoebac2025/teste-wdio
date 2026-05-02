@@ -22,8 +22,12 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './test/specs/**/*.js'
-    ],
+    './login.spec.js'
+],
+
+
+
+
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -66,7 +70,7 @@ export const config = {
             "appium:automationName": "UiAutomator2",
             "appium:deviceName": "nightwatch-android-11",
             "appium:platformVersion": "16.0",
-            "appium:app": "app\wdio.apk"
+            "appium:app": "app/wdio.apk"
         }
     ],
 
