@@ -22,7 +22,7 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-    './login.spec.js'
+    './test/specs/**/*.js'
 ],
 
 
@@ -68,11 +68,11 @@ export const config = {
         {
             "platformName": "Android",
             "appium:automationName": "UiAutomator2",
-            "appium:deviceName": "nightwatch-android-11",
+            "appium:deviceName": "Pixel 8",
             "appium:platformVersion": "16.0",
             "appium:app": "app/wdio.apk"
-        }
-    ],
+   }
+ ],
 
     //
     // ===================
