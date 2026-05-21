@@ -8,13 +8,18 @@ describe('Teste swipe', () => {
 
   afterEach(async () => {
 
-    await driver.back()
+    await driver.back();
     await driver.pause(5000)
 
   });
 
   it('Deve arrastar para baixo', async () => {
-    await driver.swipe('down')
+    await browser.swipe({
+      direction: 'down',
+      duration: 1000,
+      percent: 0.5
+
+    })
 
   });
 
@@ -30,18 +35,28 @@ describe('Teste swipe', () => {
 
     await driver.pause(5000)
   });
+  it('deve deslizar con una pausa visible', async () => {
+    // Localiza el contenedor del swipe por accessibilityId
+    const carousel = await $('~Swipe');
 
-  it('deve deslizar com sucesso para o lado', async () => {
+    await expect(carousel).toBeDisplayed();
 
-    const carousel = $("-android uiautomator:new UiSelector().resourceId(\"__CAROUSEL_ITEM_0_READY__\")");
+    // Ejecuta el gesto de swipe
+    await driver.execute('mobile: swipeGesture', {
+      elementId: carousel.elementId,
+      direction: 'left',
+      percent: 0.5
+    });
 
-    await browser.swipe({
-      direction: 'left',                  // Swipe from right to left
-      duration: 5000,                     // Last for 5 seconds
-      percent: 0.5,                       // Swipe 50% of the scrollableElement
-      scrollableElement: $('~carousel'),  // The element to swipe within
+    // Pausa de 5 segundos para observar el movimiento
+    await driver.pause(5000);
 
-    })
+    // Validación: el primer item ya no debería estar visible
+    const firstItem = await $(`android=new UiSelector().resourceId("__CAROUSEL_ITEM_0_READY__")`);
+    await expect(firstItem).not.toBeDisplayed();
   });
+
 });
+
+
 
